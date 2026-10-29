@@ -1,0 +1,14 @@
+{
+  "name": "lumina-flow",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unity mobile laser puzzle with a dependency-free web companion",
+  "scripts": {
+    "start": "node scripts/serve.cjs",
+    "test": "node --test tests/engine.test.cjs",
+    "test:browser": "node scripts/package-web.cjs && node tests/browser.cjs",
+    "package:web": "node scripts/package-web.cjs",
+    "levels:build": "node scripts/levels.cjs"
+  },
+  "devDependencies": {"playwright-core": "1.56.1"}
+}

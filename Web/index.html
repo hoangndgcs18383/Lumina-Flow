@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#090e17">
+  <meta name="description" content="Xoay gương, kết nối ánh sáng. Chơi thử Lumina Flow với 24 màn giải đố laser neon.">
+  <title>Lumina Flow · Kết nối ánh sáng</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <div class="app-shell">
+    <header class="app-header">
+      <a class="brand" href="./index.html" aria-label="Lumina Flow, trang đầu">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="m24 3 21 21-21 21L3 24Z"/><path d="M13 31h11V16l10 10"/></svg>
+        <span>LUMINA<span class="brand-flow">FLOW</span><small>KẾT NỐI ÁNH SÁNG</small></span>
+      </a>
+      <div class="header-center"><span class="status-dot"></span> CHẠM. XOAY. TỎA SÁNG.</div>
+      <nav class="header-actions" aria-label="Cài đặt">
+        <button id="sound" class="icon-button" aria-label="Bật âm thanh" aria-pressed="false" title="Âm thanh"></button>
+        <button id="palette" class="icon-button" aria-label="Chọn hiệu ứng ánh sáng" title="Bảng màu">✧</button>
+        <button id="share" class="button button-outline"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6-10 10M10 5H5v14h14v-5"/></svg> <span>Chia sẻ màn</span></button>
+      </nav>
+    </header>
+    <main class="workspace">
+      <aside class="campaign panel" aria-label="Danh sách màn chơi">
+        <div class="panel-heading"><span class="eyebrow">HÀNH TRÌNH CỦA BẠN</span><span class="tiny-tag">24 MÀN</span></div>
+        <h1>Một tia sáng.<br>Vô vàn khả năng.</h1>
+        <p class="muted campaign-description">Tìm đường đi của ánh sáng,<br>từng góc xoay một.</p>
+        <div class="progress-heading"><span>Tiến trình khám phá</span><strong id="progress-label">0 / 24</strong></div>
+        <div class="progress-track"><div id="progress-fill"></div></div>
+        <div class="chapter-select"><button id="prev-chapter" class="small-arrow" aria-label="Chương trước">‹</button><span id="chapter-label">01 · Khởi nguồn</span><button id="next-chapter" class="small-arrow" aria-label="Chương tiếp">›</button></div>
+        <div id="level-grid" class="level-grid"></div>
+        <div class="chapter-dots" aria-label="Chọn chương" id="chapter-dots"></div>
+        <div class="campaign-bottom"><span class="star-text">✦</span><div><strong id="total-stars">0 <span>/ 72</span></strong><small>Ánh sáng bạn đã thu thập</small></div></div>
+        <button id="import" class="text-button">＋ Nhập mã màn chơi</button>
+      </aside>
+
+      <section class="game-section" aria-labelledby="level-name">
+        <div class="game-heading"><div><p id="level-eyebrow" class="eyebrow">CHƯƠNG 01 / KHỞI NGUỒN</p><h2 id="level-name">Ánh sáng đầu tiên</h2></div><div class="level-index"><small>MÀN CHƠI</small><span id="level-number" class="level-number">01<span>/24</span></span></div></div>
+        <div class="board-meta"><span><i class="mini-dot"></i><span id="board-status">Kết nối nguồn sáng đến lõi đích</span></span><span id="crystal-count">◇ 0 / 2</span></div>
+        <div class="board-frame">
+          <div class="frame-top" aria-hidden="true"><span>◈ &nbsp; L U M I N A &nbsp; / &nbsp; O P T I C S</span><span><i></i> &nbsp; SYSTEM ONLINE</span></div>
+          <div id="board" class="board" role="group" aria-label="Bàn giải đố laser">
+            <svg id="beams" class="beams" aria-hidden="true"></svg>
+            <div id="pieces" class="pieces"></div>
+          </div>
+          <div class="frame-bottom" aria-hidden="true"><span>LIGHT YOUR WAY</span><span>✦ &nbsp; ✦ &nbsp; ✦</span><span>FLOW / 01</span></div>
+          <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+        </div>
+        <div class="game-toolbar">
+          <div class="move-counter"><span class="move-symbol" aria-hidden="true">⤾</span><div><strong id="move-count">0</strong><span>lần xoay <em id="par-count">/ mục tiêu 1</em></span></div></div>
+          <div class="tools"><button id="undo" class="tool-button" aria-label="Hoàn tác" title="Hoàn tác (Ctrl+Z)"><span>↶</span><small>Hoàn tác</small></button><button id="reset" class="tool-button" aria-label="Chơi lại" title="Chơi lại (R)"><span>⟳</span><small>Chơi lại</small></button><span class="tool-divider"></span><button id="hint" class="button button-hint"><span>☼</span> Gợi ý</button></div>
+        </div>
+        <p class="board-caption"><span aria-hidden="true">◉</span> Chạm vào gương để xoay 90° <span class="caption-dot">·</span> Không giới hạn thời gian</p>
+      </section>
+
+      <aside class="guide" aria-label="Hướng dẫn chơi">
+        <div class="guide-card panel"><div class="guide-icon">⌁</div><span class="eyebrow">MỘT CHÚT GỢI MỞ</span><h3>Để ánh sáng<br>dẫn lối.</h3><p id="level-tip">Chạm vào gương để đưa tia sáng đến lõi đích.</p><div class="guide-rule"></div><div id="legend" class="legend"></div></div>
+        <div class="stars-guide"><div class="star-trio">✦ ✦ ✦</div><h4>Mỗi màn, ba ngôi sao</h4><p>Thắp sáng tất cả lõi đích.<br>Thu thập hết pha lê.<br>Hoàn thành trong số lần xoay mục tiêu.</p></div>
+        <div class="save-note"><span>✓</span> Tiến trình tự lưu trên thiết bị này</div>
+      </aside>
+    </main>
+    <footer class="app-footer"><span>LUMINA FLOW <i>·</i> NEON LASER PUZZLE</span><span>Một khoảng lặng. Một tia sáng.</span><span class="web-label">BẢN WEB CHƠI THỬ <span class="status-dot"></span></span></footer>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="win-dialog" class="modal win-modal" aria-labelledby="win-title"><div class="win-orbit">✧</div><span class="eyebrow">ÁNH SÁNG ĐÃ KẾT NỐI</span><h2 id="win-title">Bạn đã tìm thấy dòng chảy.</h2><div id="win-stars" class="win-stars"></div><p id="win-detail"></p><button id="next-level" class="button button-primary">Khám phá màn tiếp theo <span>→</span></button><button id="replay" class="text-button">Chơi lại màn này</button></dialog>
+  <dialog id="share-dialog" class="modal" aria-labelledby="share-title"><button class="close-modal icon-button" aria-label="Đóng">×</button><span class="eyebrow">KẾT NỐI VỚI BẠN BÈ</span><h2 id="share-title">Chia sẻ một tia sáng</h2><p>Mã màn dùng chung cho bản web và Unity. Màn nhập thêm không thay đổi tiến trình hành trình.</p><label for="share-code">Mã màn chơi</label><textarea id="share-code" rows="5" spellcheck="false" placeholder="Dán mã màn chơi tại đây…"></textarea><p id="share-error" class="form-error" role="alert"></p><div class="modal-actions"><button id="copy-code" class="button button-outline">Sao chép mã</button><button id="load-code" class="button button-primary">Chơi mã này →</button></div></dialog>
+  <dialog id="palette-dialog" class="modal" aria-labelledby="palette-title"><button class="close-modal icon-button" aria-label="Đóng">×</button><span class="eyebrow">BỘ SƯU TẬP ÁNH SÁNG</span><h2 id="palette-title">Chọn nhịp sáng của bạn</h2><p>Thu thập sao để mở hiệu ứng. Màu tia luôn giữ nguyên ý nghĩa trong câu đố.</p><div id="skin-list" class="skin-list"></div></dialog>
+  <script src="engine.js"></script><script src="levels.js"></script><script src="app.js"></script>
+</body>
+</html>

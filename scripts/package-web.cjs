@@ -1,0 +1,12 @@
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+let html=fs.readFileSync(path.join(root,'Web/index.html'),'utf8');
+const style=fs.readFileSync(path.join(root,'Web/style.css'),'utf8').replace('url("nebula.png")',()=>`url("data:image/png;base64,${fs.readFileSync(path.join(root,'Web/nebula.png')).toString('base64')}")`);
+html=html.replace('<link rel="stylesheet" href="style.css">',()=>'<style>'+style+'</style>');
+html=html.replace('href="icon.svg"',()=>`href="data:image/svg+xml;base64,${fs.readFileSync(path.join(root,'Web/icon.svg')).toString('base64')}"`);
+for(const name of ['engine.js','levels.js','app.js'])html=html.replace(`<script src="${name}"></script>`,()=>'<script>'+fs.readFileSync(path.join(root,'Web',name),'utf8').replace(/<\/script/gi,'<\\/script')+'</script>');
+html=html.replace('href="./index.html"','href="#"');
+fs.mkdirSync(path.join(root,'artifacts'),{recursive:true});
+fs.writeFileSync(path.join(root,'artifacts/lumina-flow.html'),html);
+console.log('Packaged offline single-file preview: artifacts/lumina-flow.html');

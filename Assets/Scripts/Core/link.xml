@@ -1,0 +1,10 @@
+<linker>
+  <assembly fullname="Assembly-CSharp">
+    <type fullname="LuminaFlow.LevelCatalog" preserve="all" />
+    <type fullname="LuminaFlow.LevelData" preserve="all" />
+    <type fullname="LuminaFlow.PieceData" preserve="all" />
+    <type fullname="LuminaFlow.SaveData" preserve="all" />
+    <type fullname="LuminaFlow.SaveSettings" preserve="all" />
+    <type fullname="LuminaFlow.LevelProgress" preserve="all" />
+  </assembly>
+</linker>
