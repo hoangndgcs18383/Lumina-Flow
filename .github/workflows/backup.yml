@@ -1,0 +1,34 @@
+name: Lumina Git backup
+on:
+  schedule:
+    - cron: '15 1 * * *' # 08:15 Asia/Bangkok
+  workflow_dispatch:
+permissions:
+  contents: read
+env:
+  LUMINA_AGENT_ENABLED: ${{ vars.LUMINA_AGENT_ENABLED }}
+  LUMINA_AGENT_START_DATE: ${{ vars.LUMINA_AGENT_START_DATE }}
+jobs:
+  backup:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
+          persist-credentials: false
+      - id: window
+        run: python3 scripts/automation.py gate
+      - name: Create and verify Git bundle
+        if: steps.window.outputs.enabled == 'true'
+        run: |
+          mkdir -p artifacts
+          git bundle create artifacts/Lumina-Flow.bundle --all
+          git bundle verify artifacts/Lumina-Flow.bundle
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: steps.window.outputs.enabled == 'true'
+        with:
+          name: git-backup-${{ github.run_id }}
+          path: artifacts/Lumina-Flow.bundle
+          retention-days: 30

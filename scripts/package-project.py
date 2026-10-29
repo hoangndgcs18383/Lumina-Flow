@@ -7,7 +7,7 @@ root=Path(__file__).resolve().parents[1]
 output=root/'artifacts'/'Lumina-Flow-project.zip'
 output.parent.mkdir(exist_ok=True)
 excluded={'.git','node_modules','artifacts','Library','Temp','Logs','UserSettings','Build','Builds','bin','obj','__pycache__'}
-included={'Assets','Packages','ProjectSettings','Web','docs','scripts','tests','.gitignore','README.md','package.json','package-lock.json'}
+included={'Assets','Packages','ProjectSettings','Web','docs','scripts','tests','.github','.gitignore','AGENTS.md','README.md','package.json','package-lock.json'}
 with zipfile.ZipFile(output,'w',zipfile.ZIP_DEFLATED) as bundle:
     for item in sorted(root.rglob('*')):
         relative=item.relative_to(root)

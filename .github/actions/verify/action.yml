@@ -1,0 +1,27 @@
+name: Verify Lumina Flow
+description: Test web, pure C#, optics parity and packaged browser gameplay.
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      with:
+        node-version: '24'
+        cache: npm
+    - uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
+      with:
+        dotnet-version: '8.0.x'
+    - shell: bash
+      run: npm ci --ignore-scripts --no-audit --no-fund
+    - shell: bash
+      run: |
+        npm test
+        python3 -m unittest discover -s tests -p 'test_*.py'
+        python3 Assets/Tests/Pure/run-tests.py --interop
+    - shell: bash
+      run: npx playwright-core install --with-deps chromium
+    - shell: bash
+      run: |
+        browser_path=$(node -p "require('playwright-core').chromium.executablePath()")
+        echo "CHROMIUM_PATH=$browser_path" >> "$GITHUB_ENV"
+    - shell: bash
+      run: npm run test:browser

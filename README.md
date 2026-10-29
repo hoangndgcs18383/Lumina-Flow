@@ -4,6 +4,8 @@ Game giải đố laser neon, gồm dự án **Unity cho Android/iOS** và **b�
 
 Kho ban đầu trống; đây là bản triển khai mới dựa trên [tài liệu bàn giao](docs/project-handoff.md), không phải bản build của các script đã có sẵn trong tài liệu.
 
+Kế hoạch bảo trì 7 ngày và hướng dẫn cài agent GitHub Actions: [docs/maintenance-7-days.md](docs/maintenance-7-days.md). Agent mặc định chưa bật; cần API secret, ngày bắt đầu và biến opt-in trước khi chạy.
+
 ## Chơi thử bản web
 
 Không cần cài thư viện để chạy:
